@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 public class player_controller : MonoBehaviour
 {
     [SerializeField] bool is_on_ground;
-    private Animator animator;
-
 
     public float jump_force = 5.0f;
     public float player_speed = 10.0f;
@@ -20,6 +18,7 @@ public class player_controller : MonoBehaviour
 
     Rigidbody2D rigib_body;
     private SpriteRenderer sprite_renderer;
+    private Animator animator;
 
     void OnMove(InputValue value)
     {
@@ -52,20 +51,24 @@ public class player_controller : MonoBehaviour
     {
         Debug.DrawRay(this.transform.position, Vector2.down * 1.0f, Color.red);
         is_character_on_floor();
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    jump();
-        //}
-        //player_move();
         transform.Translate(new Vector3(move_vector, 0, 0) * move_speed * Time.deltaTime);
-        if (move_vector > 0)
+        if (move_vector == 0.0f)
         {
-            sprite_renderer.flipX = false;
+            animator.SetBool("is_running", false);
         }
-        else if (move_vector < 0)
+        else
         {
-            sprite_renderer.flipX = true;
+            animator.SetBool("is_running", true);
+            if (move_vector > 0)
+            {
+                sprite_renderer.flipX = false;
+            }
+            else
+            {
+                sprite_renderer.flipX = true;
+            }
         }
+        
         Debug.DrawRay(this.transform.position, Vector2.down * 1.2f, Color.red);
         Debug.DrawRay(this.transform.position + (new Vector3(0.6f, 0, 0)), Vector2.down * 1.0f, Color.red);
         Debug.DrawRay(this.transform.position + (new Vector3(-0.6f, 0, 0)), Vector2.down * 1.0f, Color.red);
@@ -81,12 +84,12 @@ public class player_controller : MonoBehaviour
            )
         {
             is_on_ground = true;
-            //animator.SetBool("on_air", false);
+            animator.SetBool("on_ground", true);
         }
         else
         {
             is_on_ground = false;
-            //animator.SetBool("on_air", true);
+            animator.SetBool("on_ground", false);
         }
     }
 
