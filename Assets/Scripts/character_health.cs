@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class character_health : MonoBehaviour
 {
-    public int max_health = 10;
-    private int current_health;
+    public int max_health;
+    public int current_health;
 
-    private void Start()
+    public GameObject heart_bar_UI;
+    public heart_bar heart_bar;
+
+    private void Awake()
     {
-        current_health = max_health;
+        max_health = 10;
+        current_health = 10;
+        heart_bar = heart_bar_UI.GetComponent<heart_bar>();
+        //heart_bar = FindObjectOfType<heart_bar>();
+        heart_bar.update_hearts_UI(current_health);
     }
 
     public void take_damage(int damage_amount)
     {
         Debug.Log(string.Format("HEALT: Tengo {0} vida", current_health));
+        Debug.Log(string.Format("HEALT: Te hiciste {0} vida", damage_amount));
         current_health -= damage_amount;
+        heart_bar.update_hearts_UI(current_health);
         Debug.Log(string.Format("HEALT: Me queda {0} vida", current_health));
         if (current_health <= 0)
         {
@@ -32,6 +41,7 @@ public class character_health : MonoBehaviour
         if(current_health > max_health)
         {
             current_health = max_health;
+            heart_bar.update_hearts_UI(current_health);
             // sonidos de recuperar vida
         }
     }
@@ -40,4 +50,7 @@ public class character_health : MonoBehaviour
     {
         Debug.Log("HEALT: ya no tengo vidavida");
     }
+
+    
+
 }

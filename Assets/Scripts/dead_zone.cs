@@ -9,7 +9,7 @@ public class dead_zone : MonoBehaviour
 
     private void Start()
     {
-        damage_amount = 3;
+        damage_amount = 1;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
