@@ -21,7 +21,7 @@ public class finish_zone : MonoBehaviour
     {
         // Pass to the next Scene
         string scene_name = SceneManager.GetActiveScene().name;
-        string next_scene = scene_name == "Game_lvl_1" ? "Game_lvl_2" : "Empty";
+        string next_scene = scene_name == "Game_lvl_1" ? "Game_lvl_2" : "end_screen";
         SceneManager.LoadScene(next_scene);
     }
 }
