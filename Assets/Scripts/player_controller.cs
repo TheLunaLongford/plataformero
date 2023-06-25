@@ -20,6 +20,8 @@ public class player_controller : MonoBehaviour
     private SpriteRenderer sprite_renderer;
     private Animator animator;
 
+    public bool alpha_show;
+
     void OnMove(InputValue value)
     {
         move_vector = value.Get<float>();
@@ -44,6 +46,8 @@ public class player_controller : MonoBehaviour
         rigib_body.gravityScale = 4.7f;
         move_speed = 10;
         jump_speed = 20;
+
+        alpha_show = true;
     }
 
     // Update is called once per frame
@@ -93,19 +97,37 @@ public class player_controller : MonoBehaviour
         }
     }
 
-    //void jump()
-    //{
-    //    if (is_on_ground)
-    //    {
-    //        playerRB.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
-    //    }
-    //}
 
-    //void player_move()
-    //{
-    //    float moveHorizontal = Input.GetAxis("Horizontal");
+    public void pit_recoil()
+    {
+        transform.position = transform.position + new Vector3(-5.0f, 5.0f, 0.0f);
+        damage_blink();
+    }
 
-    //    Vector2 movement = new Vector2(moveHorizontal, 0.0f);
-    //    playerRB.AddForce(movement * player_speed);
-    //}
+    public void damage_blink()
+    {
+        toggle_alpha();
+        Invoke("toggle_alpha", 0.3f);
+        Invoke("toggle_alpha", 0.6f);
+        Invoke("toggle_alpha", 0.9f);
+        Invoke("toggle_alpha", 1.2f);
+        Invoke("toggle_alpha", 1.5f);
+    }
+
+    public void toggle_alpha()
+    {
+            Color c = sprite_renderer.color;
+            if (alpha_show)
+            {
+                // dissappear
+                sprite_renderer.color = new Color(c.r, c.g, c.b, 0.0f);
+                alpha_show = false;
+            }
+            else
+            {
+                // re-appear
+                sprite_renderer.color = new Color(c.r, c.g, c.b, 255.0f);
+                alpha_show = true;
+            }
+    }
 }
