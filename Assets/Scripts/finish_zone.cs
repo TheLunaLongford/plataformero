@@ -11,10 +11,17 @@ public class finish_zone : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Save the current life amount
-            PlayerPrefs.SetFloat("player_life", character_health.current_health);
-            // Pass to the next Scene
-            SceneManager.LoadScene("Empty");
-            Debug.Log("LEVEL: Haz iniciado el Level 2");
+            PlayerPrefs.SetInt("player_life", character_health.current_health);
+            // wait a little for writing the life
+            load_next_scene();
         }
+    }
+
+    private void load_next_scene()
+    {
+        // Pass to the next Scene
+        string scene_name = SceneManager.GetActiveScene().name;
+        string next_scene = scene_name == "Game_lvl_1" ? "Game_lvl_2" : "Empty";
+        SceneManager.LoadScene(next_scene);
     }
 }

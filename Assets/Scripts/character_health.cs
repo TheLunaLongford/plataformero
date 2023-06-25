@@ -16,7 +16,7 @@ public class character_health : MonoBehaviour
     private void Awake()
     {
         max_health = 10;
-        current_health = 10;
+        current_health = PlayerPrefs.GetInt("player_life");
         heart_bar = heart_bar_UI.GetComponent<heart_bar>();
         //heart_bar = FindObjectOfType<heart_bar>();
         heart_bar.update_hearts_UI(current_health);
