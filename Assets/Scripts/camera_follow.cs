@@ -22,8 +22,14 @@ public class camera_follow : MonoBehaviour
         float target_x = target.position.x;
         float init_x = init_limit.transform.position.x;
         float finish_x = finish_limit.transform.position.x;
+
+        float target_y = target.position.y;
+        float init_y = init_limit.transform.position.y;
+        float finish_y = finish_limit.transform.position.y;
+
         float destination_x = (target_x > init_x & target_x < finish_x ? target_x - offset.x : (target_x < init_x ? init_x : finish_x));
-        Vector3 destination = new Vector3(destination_x, offset.y, offset.z);
+        float destination_y = (target_y > init_y & target_y < finish_y ? target_y - offset.y : (target_y < init_y ? init_y : finish_y));
+        Vector3 destination = new Vector3(destination_x, destination_y, offset.z);
         if (smooth)
         {
             this.transform.position = Vector3.SmoothDamp(this.transform.position, destination, ref velocity, damping_time);
