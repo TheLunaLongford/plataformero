@@ -7,6 +7,6 @@ public class button_start : MonoBehaviour
 {
     public void Iniciar_juego()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game_lvl_1");
     }
 }
