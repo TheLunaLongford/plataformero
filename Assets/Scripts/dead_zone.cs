@@ -19,9 +19,9 @@ public class dead_zone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            player_controller.pit_recoil();
             character_health.take_damage(damage_amount);
             Debug.Log("OBJETO: Te hiciste daño wey");
-            player_controller.pit_recoil();
         }
     }
 }

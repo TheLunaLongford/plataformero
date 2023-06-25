@@ -10,6 +10,9 @@ public class character_health : MonoBehaviour
     public GameObject heart_bar_UI;
     public heart_bar heart_bar;
 
+    public GameObject player;
+    public GameObject init_point;
+
     private void Awake()
     {
         max_health = 10;
@@ -48,6 +51,14 @@ public class character_health : MonoBehaviour
 
     public void player_die()
     {
+        player.transform.position = init_point.transform.position;
+        // Appear Dead Screen
+
+        // Dissapear Dead Screen
+
+        // Restore Healt Bar
+        current_health = max_health;
+        heart_bar.update_hearts_UI(current_health);
         Debug.Log("HEALT: ya no tengo vidavida");
     }
 

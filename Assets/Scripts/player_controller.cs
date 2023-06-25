@@ -21,6 +21,7 @@ public class player_controller : MonoBehaviour
     private Animator animator;
 
     public bool alpha_show;
+    public GameObject init_point;
 
     void OnMove(InputValue value)
     {
@@ -48,6 +49,7 @@ public class player_controller : MonoBehaviour
         jump_speed = 20;
 
         alpha_show = true;
+        transform.position = init_point.transform.position;
     }
 
     // Update is called once per frame
@@ -100,6 +102,7 @@ public class player_controller : MonoBehaviour
 
     public void pit_recoil()
     {
+        // Knock back a little bit upper-left in order to recover from a fail
         transform.position = transform.position + new Vector3(-5.0f, 5.0f, 0.0f);
         damage_blink();
     }
