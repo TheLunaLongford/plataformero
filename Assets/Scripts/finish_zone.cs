@@ -5,15 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class finish_zone : MonoBehaviour
 {
-   public character_health character_health;
-   private void OnCollisionEnter2D(Collision2D collision)
+    public character_health character_health;
+    public music_box music_box;
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            // Play complete level sound
+            music_box.play_complete_level();
             // Save the current life amount
             PlayerPrefs.SetInt("player_life", character_health.current_health);
-            // wait a little for writing the life
-            load_next_scene();
+            // wait a little the complete sound to be listened
+            Invoke("load_next_scene", 1.0f);
         }
     }
 

@@ -1338,6 +1338,7 @@ MonoBehaviour:
   damage: {fileID: 8300000, guid: 82b289d940981084ca8f784dd78d6ded, type: 3}
   jump: {fileID: 8300000, guid: 816fbf108a366434284c5b00943f77af, type: 3}
   menu: {fileID: 8300000, guid: d92f22bae00e338459aef8a666b6704b, type: 3}
+  dead: {fileID: 8300000, guid: 371868b28b399374f85067067771354c, type: 3}
 --- !u!1 &2004152596
 GameObject:
   m_ObjectHideFlags: 0

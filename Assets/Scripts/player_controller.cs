@@ -23,6 +23,8 @@ public class player_controller : MonoBehaviour
     public bool alpha_show;
     public GameObject init_point;
 
+    public music_box music_box;
+
     void OnMove(InputValue value)
     {
         move_vector = value.Get<float>();
@@ -32,6 +34,9 @@ public class player_controller : MonoBehaviour
     {
         if (is_on_ground)
         {
+            // Play sound for jump
+            music_box.play_jump();
+            // Character Jump 
             rigib_body.AddForce(Vector2.up * jump_speed, ForceMode2D.Impulse);
         }
     }
